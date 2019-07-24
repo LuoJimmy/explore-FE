@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      p {
+        background: #666;
+      }
+      .right p {
+        background: #999;
+      }
+
+      /* 方案一 */
+      /* .left {
+          float: left;
+          width: 100px;
+      }
+      .right {
+          margin-left: 120px;
+      } */
+
+      /* 方案二 */
+      .left {
+        float: left;
+        width: 100px;
+      }
+      .right {
+        overflow: hidden;
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="parent">
+      <div class="left">
+        <p>left</p>
+      </div>
+      <div class="right">
+        <p>right</p>
+        <p>right</p>
+      </div>
+    </div>
+  </body>
+</html>

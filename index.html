@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 使用flex */
+        /* .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        } */
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background: #ff0;
+        }
+
+        /* 圣杯布局 */
+        .container {
+            display: flex;
+            /* 垂直*/
+            flex-direction: column;
+            width: 100%;
+            /*视口被均分为100单位的vh 占据整个窗口*/
+            min-height: 100vh;
+        }
+
+        header,
+        footer {
+            /*放大缩小比例为0 占据垂直方向80px*/
+            flex: 0 0 80px;
+        }
+
+        .content {
+            display: flex;
+            /*1 1 auto 后两个值省略*/
+            flex: 1;
+        }
+
+        nav {
+            /*默认 0 数值越小 排列越靠前*/
+            order: -1;
+            flex: 0 0 80px;
+        }
+
+        aside {
+            flex: 0 0 80px;
+        }
+
+        main {
+            flex: 1;
+        }
+    </style>
+    <script type="text/javascript" src="./advanceFn.js"></script>
+    <script type="text/javascript" src="./algorithm.js"></script>
+</head>
+
+<body>
+    <!-- <div class="container">
+        <div class="box"></div>
+    </div> -->
+
+    <div class="container">
+        <header>Header</header>
+        <div class="content">
+            <main>Main</main>
+            <nav>Nav</nav>
+            <aside>Aside</aside>
+        </div>
+        <footer>Footer</footer>
+    </div>
+    <button id="refresh">刷新</button>
+
+    <script type="text/javascript">
+        function MyObject() {
+            this.age = 18;
+
+            this.func = function () {
+                let self = this;
+                console.log(this.age);
+                console.log(self.age);
+
+                (function () {
+                    console.log(this.age);
+                    console.log(self.age);
+                }());
+            }
+        }
+        let myObj = new MyObject();
+        myObj.func();
+
+
+        // switch two variable without other variable
+        let a = 1;
+        let b = 4;
+
+        // method 1
+        function switchTwoVar1(a, b) {
+            console.info('交换之前：');
+            console.log(a, b);
+            b = a + b;
+            a = b - a;
+            b = b - a;
+            console.info('交换之后：');
+            console.log(a, b);
+        }
+
+        // method 2
+        function switchTwoVar2(a, b) {
+            console.info('交换之前：');
+            console.log(a, b);
+            a = a - b;
+            b = a + b;
+            a = b - a;
+            console.info('交换之后：');
+            console.log(a, b);
+        }
+
+        switchTwoVar1(a, b);
+        switchTwoVar2(a, b);
+
+        // 根据对象的值升序排序，输出关键字数组
+        let obj = {
+            a: 1,
+            b: 3,
+            c: 2
+        };
+
+        let sortObj = Object.keys(obj).sort((a, b) => obj[a] - obj[b]);
+        console.log('obj', obj);
+        console.log('sortObj', sortObj);
+
+        //作用域问题
+        // function funA(i) {
+        //     console.log(i);
+        // }
+
+        // for (var i = 0; i < 5; i++) {
+        //     setTimeout(funA, 1000, i);   //传入第3个参数
+        // }
+
+        function funcB() {
+            console.log(1);
+            new Promise((resovle, err) => {
+                console.log(2);
+                resovle(3);
+            }).then(res => {
+                setTimeout(() => {
+                    console.log("微任务里定义了宏任务")
+                }, 0);
+                console.log(res)
+            });
+            setTimeout(() => {
+                console.log(4);
+            }, 1000);
+            setTimeout(() => {
+                console.log(5);
+            }, 0);
+            console.log(6);
+        }
+
+        funcB();// 1 2 6 3 5 4
+
+        var obja = {};
+        var objb = {key: "b"};
+        var objc = {key: "c"};
+        obja[objb] = 123;
+        obja[objc] = 456;
+
+        console.log("obja[objb]", obja[objb]);
+
+        var arrCompare1 = {a: 1};
+        var arrCompare2 = arrCompare1;
+        console.log(arrCompare1 === arrCompare2);
+
+        /* var str="123abc";
+        alert(typeof(str++)); // number
+        alert(str);// NaN */
+
+    </script>
+    <script type="text/javascript" src="./designPattern.js"></script>
+    <script type="text/javascript" src="./questions.js"></script>
+</body>
+
+</html>

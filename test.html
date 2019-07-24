@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <style>
+      .opened {
+        display: block;
+      }
+      .closed {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <ul>
+      <li>
+        苹果
+        <ul class="closed">
+          <li>MacBook Pro系列
+            <ul class="closed">
+              <li>MacBook Pro 13(MB990)</li>
+              <li>MacBook Pro 15(MB995)</li>
+              <li>MacBook Pro 13(MC374CH/A)</li>
+            </ul>
+          </li>
+          <li>MacBook Air系列</li>
+          <li>MacBook</li>
+        </ul>
+      </li>
+      <li>华硕</li>
+      <li>联想</li>
+    </ul>
+    <script>
+      $li = document.getElementsByTagName("li");
+      console.log($li);
+      for(let i = 0, len = $li.length; i < len;i++) {
+        $li[i].addEventListener("click", (event) => {
+          event.stopPropagation();
+          $ul = event.target.children[0];
+          if($ul) {
+            if($ul.className == "closed") {
+              $ul.classList.remove("closed");
+              $ul.classList.add("opened");
+            } else {
+              $ul.classList.remove("opened");
+              $ul.classList.add("closed");
+            }
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
